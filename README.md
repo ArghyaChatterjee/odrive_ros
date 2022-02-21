@@ -1,13 +1,22 @@
-# Info
+# Python3 compatibility
 This fork contains a python 3 compatible version of the ROS Odrive interface. These are the steps for installing properly:
 1. First follow the instructions below to install general Odrive tools.
+```
+sudo pip3 install --upgrade odrive
+```
+2. Install ROS from source for python 3. Follow the instruction [here](https://www.miguelalonsojr.com/blog/robotics/ros/python3/2019/08/20/ros-melodic-python-3-build.html). Source the workspace inside .bashrc file.
+```
+source ~/ros_catkin_ws/install/setup.bash
+```
 
-2. Clone this fork into your ROS workspace, probably ~/catkin_ws/src or something similar.
+3. Create another workspace & Clone this fork into your ROS workspace.
+```
+mkdir -p ~/python3_ws/src
+git clone https://github.com/ArghyaChatterjee/odrive_ros.git
+catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3.8
+```
 
-
-3. First login as root user; to do this type sudo -i on the command line.
-
-Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre (if you don't see it look for something similar). 
+4. First login as root user; to do this type sudo -i on the command line. Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre (if you don't see it look for something similar). 
 
 In protocol.py add the following code:
 `class ChannelBrokenException(Exception):
@@ -17,13 +26,13 @@ In `__init__.py` add the following code:
 `from .protocol import ChannelDamagedException, ChannelBrokenException`
 
 
-4. If code doesn't work now, add the following to your .bashrc file (or the corresponding filepaths on your system):
-
-PYTHONPATH=$PYTHONPATH:/home/__your_user_here__/catkin_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
-export PYTHONPATH
-
+5. If code doesn't work now, add the following to your .bashrc file (or the corresponding filepaths on your system):
+```
+export PYTHONPATH=/home/__your_user_here__/catkin_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
+```
 This assumes installation in Linux and catkin; other installations require slightly different filepaths and commands.
-		
+
+# Python2 compatibility
 # ARCHIVE NOTICE 2021-02-04
 I have taken on a new position no longer have access to an ODrive for testing. Happy to add a maintainer role if anyone wants to step up to it, otherwise this repo will just stay up here as a reference for other implementations. 
 
