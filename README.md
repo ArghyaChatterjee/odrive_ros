@@ -16,21 +16,15 @@ git clone https://github.com/ArghyaChatterjee/odrive_ros.git
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3.8
 ```
 
-4. First login as root user; to do this type sudo -i on the command line. Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre (if you don't see it look for something similar). 
-
-In protocol.py add the following code:
-`class ChannelBrokenException(Exception):
-	pass`
-
-In `__init__.py` add the following code:
-`from .protocol import ChannelDamagedException, ChannelBrokenException`
+4. First login as root user; to do this type sudo -i on the command line. Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre (if you don't see it look for something similar). In `protocol.py` add the following code:
+`class ChannelBrokenException(Exception):pass`. In `__init__.py` add the following code:`from .protocol import ChannelDamagedException, ChannelBrokenException`
 
 
 5. If code doesn't work now, add the following to your .bashrc file (or the corresponding filepaths on your system):
 ```
-export PYTHONPATH=/home/__your_user_here__/catkin_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
+export PYTHONPATH=/home/__your_user_here__/python3_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
 ```
-This assumes installation in Linux and catkin; other installations require slightly different filepaths and commands.
+The `/opt/ros/melodic/lib/python2.7/dist-packages` automatically comes in the `$PYTHONPATH` if the installation is from binary. This makes your life difficult by importing some packages from local repository while importing others from global binary package installed during standard ros melodic installation based on python2. This assumes installation in Linux and catkin; other installations require slightly different filepaths and commands.
 
 # Python2 compatibility
 # ARCHIVE NOTICE 2021-02-04
