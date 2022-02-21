@@ -1,5 +1,5 @@
 # Python3 compatibility
-This fork contains a python 3 compatible version of the ROS Odrive interface. These are the steps for installing properly:
+This fork contains a python 3 compatible version of the ROS Odrive interface. Python 3.8.6 is a necessary requirement of ODrive. These are the steps for installing properly:
 1. First follow the instructions below to install general Odrive tools.
 ```
 sudo pip3 install --upgrade odrive
@@ -16,7 +16,7 @@ git clone https://github.com/ArghyaChatterjee/odrive_ros.git
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3.8
 ```
 
-4. First login as root user; to do this type sudo -i on the command line. Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre (if you don't see it look for something similar). In `protocol.py` add the following code:
+4. First login as root user; to do this type sudo -i on the command line. Then go to the directory /usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre. In `protocol.py` add the following code:
 `class ChannelBrokenException(Exception):pass`. In `__init__.py` add the following code:`from .protocol import ChannelDamagedException, ChannelBrokenException`
 
 
@@ -24,7 +24,7 @@ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3.8
 ```
 export PYTHONPATH=/home/__your_user_here__/python3_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
 ```
-The `/opt/ros/melodic/lib/python2.7/dist-packages` automatically comes in the `$PYTHONPATH` if the installation is from binary. This makes your life difficult by importing some packages from local repository while importing others from global binary package installed during standard ros melodic installation based on python2. This assumes installation in Linux and catkin; other installations require slightly different filepaths and commands.
+6. The `/opt/ros/melodic/lib/python2.7/dist-packages` automatically comes in the `$PYTHONPATH` if the ROS Melodic installation is from binary and one has sourced his binary melodic packages path `source /opt/ros/melodic/setup.bash` inside .bashrc file. This makes your life difficult as during runtime (calling roslaunch or rosrun in the terminal) ros tries to import some packages from local repository while trying to import others from global binary package repository (/opt/ros/melodic) installed during standard python 2.7 based ROS melodic installation. 
 
 # Python2 compatibility
 # ARCHIVE NOTICE 2021-02-04
