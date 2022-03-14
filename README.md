@@ -1,4 +1,4 @@
-# Python3 compatibility for Odrive_ros package
+# Python3 compatibility for odrive_ros package
 This fork contains a python 3 compatible version of the ROS Odrive interface. Python 3.8.6 is a necessary requirement of ODrive. These are the steps for installing properly:
 1. First follow the instructions below to install general Odrive tools.
 ```
@@ -28,7 +28,7 @@ export PYTHONPATH=/home/__your_user_here__/python3_ws/src/odrive_ros/src/odrive_
 
 This makes your life difficult as during runtime (calling roslaunch or rosrun in the terminal) ros tries to import some packages from local repository while trying to import others from global binary package repository (/opt/ros/melodic) installed during standard python 2.7 based ROS melodic installation. 
 
-# Python2 compatibility
+# Python2 compatibility for odrive_ros package
 
 ROS driver for the [ODrive motor driver](https://odriverobotics.com/)
 
