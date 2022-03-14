@@ -1,4 +1,4 @@
-# Python3 compatibility
+# Python3 compatibility for Odrive_ros package
 This fork contains a python 3 compatible version of the ROS Odrive interface. Python 3.8.6 is a necessary requirement of ODrive. These are the steps for installing properly:
 1. First follow the instructions below to install general Odrive tools.
 ```
@@ -24,13 +24,12 @@ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3.8
 ```
 export PYTHONPATH=/home/__your_user_here__/python3_ws/src/odrive_ros/src/odrive_ros/:/usr/local/lib/python3.8/dist-packages/odrive/pyfibre/fibre/
 ```
-6. The `/opt/ros/melodic/lib/python2.7/dist-packages` automatically comes in the `$PYTHONPATH` if the ROS Melodic installation is from binary and one has sourced his binary melodic packages path `source /opt/ros/melodic/setup.bash` inside .bashrc file. This makes your life difficult as during runtime (calling roslaunch or rosrun in the terminal) ros tries to import some packages from local repository while trying to import others from global binary package repository (/opt/ros/melodic) installed during standard python 2.7 based ROS melodic installation. 
+6. The `/opt/ros/melodic/lib/python2.7/dist-packages` automatically comes in the `$PYTHONPATH` if the ROS Melodic installation is from binary and one has sourced his binary melodic packages path `source /opt/ros/melodic/setup.bash` inside .bashrc file. 
+
+This makes your life difficult as during runtime (calling roslaunch or rosrun in the terminal) ros tries to import some packages from local repository while trying to import others from global binary package repository (/opt/ros/melodic) installed during standard python 2.7 based ROS melodic installation. 
 
 # Python2 compatibility
-# ARCHIVE NOTICE 2021-02-04
-I have taken on a new position no longer have access to an ODrive for testing. Happy to add a maintainer role if anyone wants to step up to it, otherwise this repo will just stay up here as a reference for other implementations. 
 
-# odrive_ros
 ROS driver for the [ODrive motor driver](https://odriverobotics.com/)
 
 This is a basic pass at a ROS driver to operate the ODrive as a differential drive. It's Python-based, so not super-fast, but it'll get you started. Maybe in time this will have an optimised C++ version, but I woudn't count on it anytime soon. ;)
